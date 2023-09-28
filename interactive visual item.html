@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <title>Visual Interactive Item</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/p5.min.js"></script>
+    <script>
+
+
+let avatar;
+let avatarX = 10;
+let avatarY = 10;
+let speed = 5;
+let xDirection = 0;
+let yDirection = 0;
+
+
+let flag1;
+let flag2;
+let flag3;
+let flag4; 
+let flag5;
+
+let flagX1;
+let flagX2;
+let flagX3;
+let flagX4;
+let flagX5;
+
+let flagY1;
+let flagY2;
+let flagY3;
+let flagY4;
+let flagY5;
+
+let victory;
+
+let score = 0; // Initialize the score
+
+function preload(){
+  flag1=loadImage('Alien.png');
+  flag2=loadImage('Alien.png');
+  flag3=loadImage('Alien.png');
+  flag4=loadImage('Alien.png');
+  flag5=loadImage('Alien.png');
+  avatar= loadImage('Spaceship.png');
+  victory = loadImage('Victory.png');
+  
+}
+
+
+
+function setup() {
+  createCanvas(400, 400);
+  background('grey');
+
+  flag1.resize(50,40);
+  flag2.resize(50,40);
+  flag3.resize(50,40);
+  flag4.resize(50,40);
+  flag5.resize(50,40);
+  avatar.resize(50,40);
+  victory.resize(400,400);
+
+flagX1 = random(11,350);
+flagX2 = random(11,350);
+flagX3 = random(11,350);
+flagX4 = random(11,350);
+flagX5 = random(11,350);
+
+flagY1 = random(11,350);
+flagY2 = random(11,350);
+flagY3 = random(11,350);
+flagY4 = random(11,350);
+flagY5 = random(11,350);
+
+
+
+
+}
+
+function draw() {
+  background('black');
+  image(flag1,flagX1,flagY1);
+  image(flag2,flagX2,flagY2);
+  image(flag3,flagX3,flagY3);
+  image(flag4,flagX4,flagY4);
+  image(flag5,flagX5,flagY5);
+  image(avatar,avatarX,avatarY);
+
+ 
+  avatarX += xDirection * speed;
+  avatarY += yDirection * speed;
+
+  if (
+    avatarX + 20 > flagX1 &&
+    avatarX - 20 < flagX1 + 25 &&
+    avatarY + 20 > flagY1 &&
+    avatarY - 20 < flagY1 + 25 
+  ) {
+    // If the avatar is over square 1, increase the score and move the square
+    score += 1;
+    flagX1 = random(11, 350);
+    flagY1 = random(11, 350);
+  }
+
+  if (
+    avatarX + 20 > flagX2 &&
+    avatarX - 20 < flagX2 + 25 &&
+    avatarY + 20 > flagY2 &&
+    avatarY - 20 < flagY2 + 25 
+  ) {
+    // If the avatar is over square 2, increase the score and move the square
+    score += 1;
+    flagX2 = random(11, 350);
+    flagY2 = random(11, 350);
+  }
+
+  if (
+    avatarX + 20 > flagX3 &&
+    avatarX - 20 < flagX3 + 25 &&
+    avatarY + 20 > flagY3 &&
+    avatarY - 20 < flagY3 + 25 
+  ) {
+    // If the avatar is over square 3, increase the score and move the square
+    score += 1;
+    flagX3 = random(11, 350);
+    flagY3 = random(11, 350);
+  }
+
+  if (
+    avatarX + 20 > flagX4 &&
+    avatarX - 20 < flagX4 + 25 &&
+    avatarY + 20 > flagY4 &&
+    avatarY - 20 < flagY4 + 25 
+  ) {
+    // If the avatar is over square 3, increase the score and move the square
+    score += 1;
+    flagX4 = random(11, 350);
+    flagY4 = random(11, 350);
+  }
+
+  if (
+    avatarX + 20 > flagX5 &&
+    avatarX - 20 < flagX5 + 25 &&
+    avatarY + 20 > flagY5 &&
+    avatarY - 20 < flagY5 + 25 
+  ) {
+    // If the avatar is over square 4, increase the score and move the square
+    score += 1;
+    flagX5 = random(11, 350);
+    flagY5 = random(11, 350);
+  }
+
+  if(score === 20){
+  background('grey');
+  image(victory,0,0);
+  noLoop();
+}
+
+
+
+
+ // Display the score
+ fill('white');
+  textSize(20);
+textFont('helvetica');
+  text('Score: ' + score, 20, 380);
+  
+  
+} 
+
+function keyPressed() {
+  if (keyCode === UP_ARROW) {
+    yDirection = -1; // Move up
+  }
+  if (keyCode === DOWN_ARROW) {
+    yDirection = 1; // Move down
+  }
+  if (keyCode === LEFT_ARROW) {
+    xDirection = -1; // Move left
+  }
+  if (keyCode === RIGHT_ARROW) {
+    xDirection = 1; // Move right
+  }
+}
+
+function keyReleased() {
+  if (keyCode === UP_ARROW || keyCode === DOWN_ARROW) {
+    yDirection = 0; // Stop vertical movement
+  }
+  if (keyCode === LEFT_ARROW || keyCode === RIGHT_ARROW) {
+    xDirection = 0; // Stop horizontal movement
+  }
+}
+
+
+    </script>
+</head>
+<body>
+  <h1>Instructions</h1>
+  <p>Destroy 20 aliens located all around the map to win!</p>
+ 
+
+</body>
+</html>
